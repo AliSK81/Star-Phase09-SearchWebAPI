@@ -1,20 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StudentProject;
 
-// https://www.nuget.org/packages/StarAcademy.CodeStar.alisk.SearchEngine
-
 namespace SearchWebAPI.Controllers
-
 {
     [ApiController]
-    public class SearchController : Controller
+    public class StudentController : Controller
     {
         [HttpGet("[action]")]
-        public IActionResult Search([FromQuery] string query)
+        public IActionResult Top([FromQuery] int n)
         {
-            var result = Processor.Instance.Search(query);
+            var result = Processor.Instance.FindTopNStudetns(n);
 
-            if(result == null)
+            if (result == null)
             {
                 return NotFound();
             }
